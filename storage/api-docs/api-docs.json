@@ -1,0 +1,114 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Example for response examples value",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Development server"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get books",
+                "operationId": "eda618c428b3bfd19b43b5c87bd893f5",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Store a newly created resource in storage.",
+                "operationId": "71b0ad0bdf7a9cbbbf0550fd4d1f8637",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "author",
+                                    "pages"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "War and Peace"
+                                    },
+                                    "author": {
+                                        "type": "string",
+                                        "example": "L. N. Tolstoy"
+                                    },
+                                    "pages": {
+                                        "type": "integer",
+                                        "example": "1300"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Get users",
+                "operationId": "9dd33c03c21315e4d87351e76fd287bc",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Example",
+            "description": "Example API"
+        },
+        {
+            "name": "Books",
+            "description": "Books API"
+        }
+    ]
+}

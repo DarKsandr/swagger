@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\ApiBookController;
+use App\Http\Controllers\API\ApiExampleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/users', [ApiExampleController::class, 'users'])->name("users");
+Route::resource('/books', ApiBookController::class)->names("book");
