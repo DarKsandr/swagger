@@ -12,9 +12,9 @@ class ApiBookController extends ApiController
 {
     /**
      * @OA\Get(
-     *   tags={"Books"},
+     *   tags={"ApiBook"},
      *   path="/books",
-     *   summary="Get books",
+     *   summary="ApiBook show all",
      *   @OA\Parameter(
      *     name="page",
      *     in="query",
@@ -34,9 +34,9 @@ class ApiBookController extends ApiController
 
     /**
      * @OA\Post(
-     *   tags={"Books"},
+     *   tags={"ApiBook"},
      *   path="/books",
-     *   summary="Store a newly created resource in storage.",
+     *   summary="ApiBook create",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\JsonContent(
@@ -49,9 +49,6 @@ class ApiBookController extends ApiController
      *   @OA\Response(response=200, description="OK"),
      * )
      * 
-     * @param \App\Http\Requests\ApiBookStoreRequest $request
-     *
-     * @return \Illuminate\Http\Response
      */
     public function store(ApiBookStoreRequest $request)
     {
@@ -60,36 +57,79 @@ class ApiBookController extends ApiController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *   tags={"ApiBook"},
+     *   path="/books/{id}",
+     *   summary="ApiBook show",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     example=1,
+     *     @OA\Schema(type="integer")
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *   ),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        return response($book);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *   tags={"ApiBook"},
+     *   path="/books/{id}",
+     *   summary="ApiBook update",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="integer")
+     *   ),
+     *   @OA\RequestBody(
+     *       required=true,
+     *       description="Updated book object",
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *   ),
+     *   @OA\Response(response=404, description="Not Found"),
+     *   @OA\Response(response=422, description="Unprocessable Entity")
+     * )
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $book->update($request->all());
+        return response($book);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *   tags={"ApiBook"},
+     *   path="/books/{id}",
+     *   summary="ApiBook destroy",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="integer")
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *   ),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return response($book);
     }
 }

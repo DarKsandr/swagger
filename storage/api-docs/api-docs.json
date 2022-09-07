@@ -14,9 +14,9 @@
         "/books": {
             "get": {
                 "tags": [
-                    "Books"
+                    "ApiBook"
                 ],
-                "summary": "Get books",
+                "summary": "ApiBook show all",
                 "operationId": "eda618c428b3bfd19b43b5c87bd893f5",
                 "parameters": [
                     {
@@ -37,9 +37,9 @@
             },
             "post": {
                 "tags": [
-                    "Books"
+                    "ApiBook"
                 ],
-                "summary": "Store a newly created resource in storage.",
+                "summary": "ApiBook create",
                 "operationId": "71b0ad0bdf7a9cbbbf0550fd4d1f8637",
                 "requestBody": {
                     "required": true,
@@ -77,6 +77,91 @@
                 }
             }
         },
+        "/books/{id}": {
+            "get": {
+                "tags": [
+                    "ApiBook"
+                ],
+                "summary": "ApiBook show",
+                "operationId": "da881e6bd02022383737556c5f6be9e8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ApiBook"
+                ],
+                "summary": "ApiBook update",
+                "operationId": "db7d66b491dfbf04fc34692b1637b38f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated book object",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ApiBook"
+                ],
+                "summary": "ApiBook destroy",
+                "operationId": "d11c0821154aec6bab7ff7d36b23d1fa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "tags": [
@@ -107,7 +192,7 @@
             "description": "Example API"
         },
         {
-            "name": "Books",
+            "name": "ApiBook",
             "description": "Books API"
         }
     ]

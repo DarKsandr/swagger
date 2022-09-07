@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
  *  description="Example API",
  * ),
  * @OA\Tag(
- *   name="Books",
+ *   name="ApiBook",
  *   description="Books API",
  * )
  * 
